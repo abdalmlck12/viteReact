@@ -1,31 +1,37 @@
-import { useEffect, useState } from 'react'
+// src/App.jsx
+import React from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+import NavBar from "./components/NavBar";
+import Home from "./pages/Home";
+import Login from "./pages/Login";
+import SignUp from "./pages/Signup";
+import Quizzes from "./pages/Quizzes";
 
-import './App.css'
-import apiClient from './api'
-
-function App() {
-
-
- const [data, setData] = useState(null);
-
- useEffect(() => {
-   apiClient
-     .get("/user/1")
-     .then((response) => {
-      console.log(response);
-       setData(response.data);
-     })
-     .catch((error) => {
-       console.error("Error fetching data:", error);
-     });
- }, []);
-
-console.log(data);
+const App = () => {
   return (
-    <div>
-      {data ? <pre>{JSON.stringify(data, null, 2)}</pre> : "Loading..."}
-    </div>
+    <Router>
+      <div>
+        <NavBar />
+        <div className="min-h-screen  flex items-center justify-center bg-gray-100">
+          <Routes>
+            <Route path="/" element={<Home />} />
+            <Route
+              path="/login"
+              element={<Login/>}
+            />
+            <Route
+              path="/signup"
+              element={<SignUp />}
+            />
+            <Route
+              path="/quizzes"
+              element={<Quizzes/>}
+            />
+          </Routes>
+        </div>
+      </div>
+    </Router>
   );
-}
+};
 
-export default App
+export default App;
