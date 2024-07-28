@@ -9,8 +9,8 @@ function App() {
  const [data, setData] = useState(null);
 
  useEffect(() => {
-   apiClient
-     .get("/user/1")
+   axios
+     .get("http://localhost:8080/api /user/1")
      .then((response) => {
       console.log(response);
        setData(response.data);
