@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const apiClient = axios.create({
-  baseURL: import.meta.env.VITE_API_BASE_URL,
+  baseURL: 'https://quizbackend-6r2q.onrender.com/api',
   headers: {
     "Content-Type": "application/json",
   },

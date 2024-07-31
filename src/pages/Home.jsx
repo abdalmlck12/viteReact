@@ -1,5 +1,3 @@
-// src/pages/HomePage.jsx
-
 import React from "react";
 import { Link } from "react-router-dom";
 import {
@@ -10,8 +8,11 @@ import {
   FaComments,
   FaStar,
 } from "react-icons/fa";
+import { useAuth } from "../context/AuthContext"; // Import your AuthContext
 
 const HomePage = () => {
+  const { user } = useAuth(); // Access user from AuthContext
+
   return (
     <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
       {/* Hero Section */}
@@ -129,23 +130,25 @@ const HomePage = () => {
       </section>
 
       {/* Call to Action Section */}
-      <section className="py-12 bg-gray-200">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-extrabold text-gray-900 mb-6">
-            Ready to Get Started?
-          </h2>
-          <p className="text-lg mb-8">
-            Sign up now and start creating or exploring quizzes. It's fun and
-            easy!
-          </p>
-          <Link
-            to="/signup"
-            className="bg-blue-600 text-white text-lg py-3 px-6 rounded-full shadow-lg hover:bg-blue-700 transition duration-300"
-          >
-            Sign Up
-          </Link>
-        </div>
-      </section>
+      {!user && (
+        <section className="py-12 bg-gray-200">
+          <div className="max-w-4xl mx-auto text-center">
+            <h2 className="text-4xl font-extrabold text-gray-900 mb-6">
+              Ready to Get Started?
+            </h2>
+            <p className="text-lg mb-8">
+              Sign up now and start creating or exploring quizzes. It's fun and
+              easy!
+            </p>
+            <Link
+              to="/signup"
+              className="bg-blue-600 text-white text-lg py-3 px-6 rounded-full shadow-lg hover:bg-blue-700 transition duration-300"
+            >
+              Sign Up
+            </Link>
+          </div>
+        </section>
+      )}
     </div>
   );
 };

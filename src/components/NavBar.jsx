@@ -1,11 +1,19 @@
-import  { useState } from "react";
+import { useState } from "react";
 import { Link } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 const NavBar = () => {
   const [isOpen, setIsOpen] = useState(false);
+  const { user, logout } = useAuth();
 
   const toggleMenu = () => {
     setIsOpen(!isOpen);
+  };
+
+  const handleLogout = () => {
+    logout();
+    // Optionally redirect to login page after logout
+    window.location.href = "/login";
   };
 
   return (
@@ -44,21 +52,38 @@ const NavBar = () => {
                   Home
                 </Link>
               </li>
-              <li>
-                <Link to="/login" onClick={toggleMenu}>
-                  Login
-                </Link>
-              </li>
-              <li>
-                <Link to="/signup" onClick={toggleMenu}>
-                  Sign Up
-                </Link>
-              </li>
-              <li>
-                <Link to="/quizzes" onClick={toggleMenu}>
-                  Quizzes
-                </Link>
-              </li>
+              {user ? (
+                <>
+                  <li>
+                    <Link to="/quizzes" onClick={toggleMenu}>
+                      Quizzes
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/user-results" onClick={toggleMenu}>
+                      All Results
+                    </Link>
+                  </li>
+                  <li>
+                    <button onClick={handleLogout} className="text-white">
+                      Logout
+                    </button>
+                  </li>
+                </>
+              ) : (
+                <>
+                  <li>
+                    <Link to="/login" onClick={toggleMenu}>
+                      Login
+                    </Link>
+                  </li>
+                  <li>
+                    <Link to="/signup" onClick={toggleMenu}>
+                      Sign Up
+                    </Link>
+                  </li>
+                </>
+              )}
             </ul>
           )}
         </div>
@@ -73,21 +98,38 @@ const NavBar = () => {
               Home
             </Link>
           </li>
-          <li>
-            <Link to="/login" className="text-white">
-              Login
-            </Link>
-          </li>
-          <li>
-            <Link to="/signup" className="text-white">
-              Sign Up
-            </Link>
-          </li>
-          <li>
-            <Link to="/quizzes" className="text-white">
-              Quizzes
-            </Link>
-          </li>
+          {user ? (
+            <>
+              <li>
+                <Link to="/quizzes" className="text-white">
+                  Quizzes
+                </Link>
+              </li>
+              <li>
+                <Link to="/user-results" className="text-white">
+                  All Results
+                </Link>
+              </li>
+              <li>
+                <button onClick={handleLogout} className="text-white">
+                  Logout
+                </button>
+              </li>
+            </>
+          ) : (
+            <>
+              <li>
+                <Link to="/login" className="text-white">
+                  Login
+                </Link>
+              </li>
+              <li>
+                <Link to="/signup" className="text-white">
+                  Sign Up
+                </Link>
+              </li>
+            </>
+          )}
         </ul>
       </div>
     </div>
