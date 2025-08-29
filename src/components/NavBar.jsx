@@ -74,7 +74,7 @@ const NavBar = () => {
                 <>
                   <li>
                     <Link to="/login" onClick={toggleMenu}>
-                      Login
+                      LoginNNN
                     </Link>
                   </li>
                   <li>
