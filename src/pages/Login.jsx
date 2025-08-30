@@ -86,7 +86,7 @@ const Login = () => {
             }`}
           >
             {loading ? (
-              <div className="flex text-gray-100 items-center justify-center gap-2">
+              <div className="flex text-gray-900 items-center justify-center gap-2">
                 <svg
                   className="animate-spin h-5 w-5 text-white"
                   xmlns="http://www.w3.org/2000/svg"
