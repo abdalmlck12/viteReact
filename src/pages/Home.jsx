@@ -1,5 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { Helmet } from "react-helmet"; // Import Helmet
 import {
   FaBookOpen,
   FaTrophy,
@@ -8,13 +9,34 @@ import {
   FaComments,
   FaStar,
 } from "react-icons/fa";
-import { useAuth } from "../context/AuthContext"; // Import your AuthContext
+import { useAuth } from "../context/AuthContext";
 
 const HomePage = () => {
-  const { user } = useAuth(); // Access user from AuthContext
+  const { user } = useAuth();
 
   return (
     <div className="min-h-screen bg-gray-100 py-12 px-4 sm:px-6 lg:px-8">
+      {/* SEO Metadata */}
+      <Helmet>
+        <title>QuizMaster – Discover, Create & Share Quizzes</title>
+        <meta
+          name="description"
+          content="QuizMaster lets you discover, create, and share quizzes. Challenge yourself and others in various categories."
+        />
+        <script type="application/ld+json">
+          {`
+          {
+            "@context": "https://schema.org",
+            "@type": "WebApplication",
+            "name": "QuizMaster",
+            "url": "https://your-app-name.vercel.app",
+            "description": "Discover, create, and share quizzes with QuizMaster.",
+            "applicationCategory": "EducationApplication"
+          }
+          `}
+        </script>
+      </Helmet>
+
       {/* Hero Section */}
       <section className="text-center py-12 rounded-2xl bg-blue-600 text-white">
         <div className="max-w-4xl mx-auto">
@@ -42,9 +64,7 @@ const HomePage = () => {
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-12">
           <div className="bg-white rounded-lg shadow-lg p-8 text-center flex flex-col items-center">
             <FaBookOpen className="text-blue-600 text-5xl mb-4" />
-            <h3 className="text-2xl font-semibold mb-2">
-              Diverse Quiz Categories
-            </h3>
+            <h3 className="text-2xl font-semibold mb-2">Diverse Quiz Categories</h3>
             <p className="text-gray-700">
               Choose from a wide range of categories to challenge yourself or
               test your friends.
@@ -52,9 +72,7 @@ const HomePage = () => {
           </div>
           <div className="bg-white rounded-lg shadow-lg p-8 text-center flex flex-col items-center">
             <FaTrophy className="text-yellow-500 text-5xl mb-4" />
-            <h3 className="text-2xl font-semibold mb-2">
-              Achievements and Scores
-            </h3>
+            <h3 className="text-2xl font-semibold mb-2">Achievements and Scores</h3>
             <p className="text-gray-700">
               Track your progress and compete for high scores. Earn achievements
               as you play.
@@ -81,24 +99,21 @@ const HomePage = () => {
             <FaQuestionCircle className="text-blue-600 text-5xl mb-4" />
             <h3 className="text-2xl font-semibold mb-2">Explore Quizzes</h3>
             <p className="text-gray-700">
-              Browse a variety of quizzes and select one to start your
-              challenge.
+              Browse a variety of quizzes and select one to start your challenge.
             </p>
           </div>
           <div className="bg-white rounded-lg shadow-lg p-8 text-center flex flex-col items-center">
             <FaComments className="text-purple-600 text-5xl mb-4" />
             <h3 className="text-2xl font-semibold mb-2">Create and Share</h3>
             <p className="text-gray-700">
-              Create your own quizzes and share them with friends or the
-              community.
+              Create your own quizzes and share them with friends or the community.
             </p>
           </div>
           <div className="bg-white rounded-lg shadow-lg p-8 text-center flex flex-col items-center">
             <FaStar className="text-yellow-500 text-5xl mb-4" />
             <h3 className="text-2xl font-semibold mb-2">Earn Rewards</h3>
             <p className="text-gray-700">
-              Earn rewards and recognition based on your performance and quiz
-              participation.
+              Earn rewards and recognition based on your performance and quiz participation.
             </p>
           </div>
         </div>
@@ -112,16 +127,14 @@ const HomePage = () => {
         <div className="flex flex-col md:flex-row justify-center items-center gap-8">
           <div className="bg-white rounded-lg shadow-lg p-8 text-center flex flex-col items-center">
             <p className="text-lg text-gray-700 mb-4">
-              "QuizMaster has been a game changer for our trivia nights! The
-              wide range of quizzes keeps everyone entertained."
+              "QuizMaster has been a game changer for our trivia nights! The wide range of quizzes keeps everyone entertained."
             </p>
             <p className="font-semibold text-gray-800">Alice Johnson</p>
             <p className="text-gray-600">Trivia Enthusiast</p>
           </div>
           <div className="bg-white rounded-lg shadow-lg p-8 text-center flex flex-col items-center">
             <p className="text-lg text-gray-700 mb-4">
-              "Creating and sharing quizzes has never been easier. The platform
-              is user-friendly and fun!"
+              "Creating and sharing quizzes has never been easier. The platform is user-friendly and fun!"
             </p>
             <p className="font-semibold text-gray-800">Michael Wilson</p>
             <p className="text-gray-600">Quiz Creator</p>
@@ -137,8 +150,7 @@ const HomePage = () => {
               Ready to Get Started?
             </h2>
             <p className="text-lg mb-8">
-              Sign up now and start creating or exploring quizzes. It's fun and
-              easy!
+              Sign up now and start creating or exploring quizzes. It's fun and easy!
             </p>
             <Link
               to="/signup"
